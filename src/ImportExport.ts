@@ -54,7 +54,7 @@ const getRealTime = (type = 'default', use12 = false) => {
     string
   >
 
-  const period = use12 ? ` ${dateParts.dayPeriod.toUpperCase()}` : ''
+  const period = use12 && typeof dateParts.dayPeriod !== 'undefined' ? ` ${dateParts.dayPeriod.toUpperCase()}` : ''
   const weekday = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
   switch (type) {
     case 'default':
