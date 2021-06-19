@@ -42,7 +42,7 @@ const getRealTime = (use12 = false) => {
 
     const dateParts = Object.assign({}, ...datePartsArr) as Record<string, string>;
         
-    const period = use12 ? ` ${dateParts.dayPeriod.toUpperCase()}` : '';
+    const period = use12 && typeof dateParts.dayPeriod !== 'undefined' ? ` ${dateParts.dayPeriod.toUpperCase()}` : '';
     return `${dateParts.year}-${dateParts.month}-${dateParts.day} ${dateParts.hour}_${dateParts.minute}_${dateParts.second}${period}`;
 }
 
