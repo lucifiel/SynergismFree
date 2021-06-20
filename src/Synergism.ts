@@ -39,6 +39,7 @@ import { startHotkeys } from './Hotkeys';
 import { updatePlatonicUpgradeBG } from './Platonic';
 import { testing, version, lastUpdated } from './Config';
 import { DOMCacheGetOrSet } from './Cache/DOM';
+import { main as loadDashboard } from './Plugins/Dashboard';
 
 /**
  * Whether or not the current version is a testing version or a main version.
@@ -3130,7 +3131,7 @@ const tick = () => {
     }
 }
 
-function tack(dt: number) {        
+function tack(dt: number) {
     if (!G['timeWarp']) {
         dailyResetCheck();
         //Adds Resources (coins, ants, etc)
@@ -3408,7 +3409,7 @@ export const reloadShit = async (reset = false) => {
     }
 
     void loadSynergy();
-    if (!reset) 
+    if (!reset)
         calculateOffline();
     else
         player.worlds = new QuarkHandler({ quarks: 0, bonus: 0 });
@@ -3421,6 +3422,7 @@ export const reloadShit = async (reset = false) => {
     constantIntervals();
     changeTabColor();
     startHotkeys();
+    loadDashboard();
 
     eventCheck();
     interval(() => eventCheck(), 15000);
@@ -3436,7 +3438,7 @@ window.addEventListener('load', () => {
     const ver = DOMCacheGetOrSet('versionnumber');
     ver && (ver.textContent = 
         `You're ${testing ? 'testing' : 'playing'} v${version} - Seal of the Merchant` +
-        ` [Last Update: ${lastUpdated.getHours()}:${lastUpdated.getMinutes()} UTC ${lastUpdated.getDate()}-${lastUpdated.toLocaleString('en-us', {month: 'short'})}-${lastUpdated.getFullYear()}].` + 
+        ` [Last Update: ${lastUpdated.getHours()}:${lastUpdated.getMinutes()} UTC ${lastUpdated.getDate()}-${lastUpdated.toLocaleString('en-us', {month: 'short'})}-${lastUpdated.getFullYear()}].` +
         ` ${testing ? 'Savefiles cannot be used in live!' : ''}`
     );
     document.title = `Synergism v${version}`;
