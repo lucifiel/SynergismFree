@@ -1,0 +1,51 @@
+name: Fetch Pseudo-Corp/SynergismOfficial upstream changes
+on:
+  schedule:
+    - cron:  '0 16 * * *'
+    # scheduled at 16:00 every day
+  workflow_dispatch:
+
+jobs:
+  sync_with_upstream:
+    runs-on: ubuntu-latest
+    name: Sync master with upstream latest
+
+    steps:
+    - name: Checkout master
+      uses: lucifiel/checkout@v2
+      with:
+        ref: master
+
+    - name: Pull (Fast-Forward) upstream changes
+      id: sync
+      uses: aormsby/Fork-Sync-With-Upstream-action@v3.1
+      with:
+        target_sync_branch: master
+        target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+        upstream_sync_repo: Pseudo-Corp/SynergismOfficial
+        upstream_sync_branch: master
+        upstream_pull_args: --ff-only
+
+    - name: Check for new commits
+      if: steps.sync.outputs.has_new_commits
+      run: echo "Fetched new commits."
+
+    - name: Merge master -> free
+      id: merge
+      if: steps.sync.outputs.has_new_commits
+      uses: devmasx/merge-branch@1.4.0
+      with:
+        type: now
+        from_branch: master
+        target_branch: free
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Repository Dispatch
+      if: steps.sync.outputs.has_new_commits
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.GA_SECRET }}
+        event-type: automerge
+
+    - name: Timestamp
+      run: date

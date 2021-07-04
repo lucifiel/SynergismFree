@@ -1,14 +1,17 @@
 name: Deploy to GitHub pages branch
 on:
   push:
-    branches: master
-    
+    branches: [ free ]
+  repository_dispatch:
+    types: [ automerge ]
+  workflow_dispatch:
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: lucifiel/checkout@v2
         with:
           persist-credentials: false 
       - name: Use Node.js 16
