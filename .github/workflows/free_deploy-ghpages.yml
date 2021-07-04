@@ -1,0 +1,74 @@
+name: free Deploy to GitHub pages branch
+on:
+  push:
+    branches: [ free ]
+  repository_dispatch:
+    types: [ automerge ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: lucifiel/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install deps
+        run: |
+          npm install
+
+      - name: Lint
+        run: |
+          npm run lint
+          npm run csslint
+
+      - name: Build
+        run: |
+          node ./scripts/update-last-updated.js
+          npm run-script build:esbuild
+
+      - name: Prepare for deploy
+        run: |
+          rm -rf targetdir
+          mkdir -p targetdir
+          mv dist Pictures translations index.html export.html Synergism.css favicon.ico package.json targetdir/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: targetdir
+
+      - name: Deploy with the $GME emoji for some reason 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: targetdir
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
