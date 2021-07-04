@@ -335,7 +335,7 @@ export const promocodes = async () => {
         const dice = window.crypto.getRandomValues(new Uint8Array(1))[0] % 6 + 1; // [1, 6]
         
         if (dice === 1) {
-            const won = bet * .25; // lmao
+            const won = bet * 25; // bonus
             player.worlds.add(won);
 
             player.skillCode = Date.now();
