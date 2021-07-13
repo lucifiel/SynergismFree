@@ -1486,7 +1486,7 @@ export const format = (
         return !back 
             ? frontFormatted
             : `${frontFormatted}${dec}${back}`;
-    } else if (power < 1e6 || power > 1e16) {
+    } else if (power < 1e6) {
         // If the power is less than 1e6 or too big for letters then apply standard scientific notation
         // Makes mantissa be rounded down to 2 decimal places
         const mantissaLook = (Math.floor(mantissa * 100) / 100).toLocaleString(undefined, locOpts);
