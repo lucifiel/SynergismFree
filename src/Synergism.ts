@@ -1496,6 +1496,22 @@ export const format = (
             : power.toString().replace(/(\d)(?=(\d{3})+$)/g, `$1${group}`);
         // returns format (1.23e456,789)
         return `${mantissaLook}e${powerLook}`;
+    } else if (power > 1e16) {
+        // Use double logarithmic representation
+        // input = mantissa * 10^power = mantissaLog * 10^(10^powerLog) = 10^powerDouble = 10^(10^powerLogDouble)
+        const powerDouble = Math.log10(Math.abs(mantissa)) + power;
+        const powerLogDouble = Math.log10(powerDouble);
+        const powerLog = Math.floor(powerLogDouble);
+        const mantissaLog = Math.sign(mantissa) * (mantissa * Math.pow(10, power)) / Math.pow(10, Math.pow(10, powerLog));
+
+        // Makes mantissaLog be rounded down to 2 decimal places
+        const mantissaLogLook = (Math.floor(mantissaLog * 100) / 100).toLocaleString(undefined, locOpts);
+        // Makes the powerLog group 3 with commas
+        const powerLogLook = typeof BigInt === 'function'
+            ? BigInt(powerLog).toLocaleString()
+            : powerLog.toString().replace(/(\d)(?=(\d{3})+$)/g, `$1${group}`);
+        // returns format (1.23e456,789)
+        return `${mantissaLogLook}ee${powerLogLook}`;
     } else if (power >= 1e6) {
         // if the power is greater than 1e6 apply notation scientific notation
         // Makes mantissa be rounded down to 2 decimal places
