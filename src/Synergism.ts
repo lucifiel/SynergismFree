@@ -1483,9 +1483,9 @@ export const format = (
     // If the power is less than 12 it's effectively 0
     if (power < -12) {
         return '0';
-    } else if (power < 6 || (long && power < 13)) {
-        // If the power is less than 6 or format long and less than 13 use standard formatting (123,456,789)
-        // Gets the standard representation of the number, safe as power is guaranteed to be > -12 and < 13
+    } else if (power < 6 || (long && power < 7)) {
+        // If the power is less than 6 or format long and less than 7 use standard formatting (123,456,789)
+        // Gets the standard representation of the number, safe as power is guaranteed to be > -12 and < 7
         let standard = mantissa * Math.pow(10, power);
         let standardString;
         // Rounds up if the number experiences a rounding error
@@ -1511,7 +1511,7 @@ export const format = (
             ? frontFormatted
             : `${frontFormatted}${dec}${back}`;
     } else if (power < 1e6) {
-        // If the power is less than 1e6 then apply standard scientific notation
+        // If the power is less than 1e6 or too big for letters then apply standard scientific notation
         // Makes mantissa be rounded down to 2 decimal places
         const mantissaLook = (Math.floor(mantissa * 100) / 100).toLocaleString(undefined, locOpts);
         // Makes the power group 3 with commas
