@@ -1898,6 +1898,7 @@ nav li:hover {
 
 #antELO {
     position: absolute;
+    white-space: pre;
 }
 
 #antUpgradeMultiplier {
