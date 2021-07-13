@@ -1502,9 +1502,10 @@ export const format = (
         const powerDouble = Math.log10(Math.abs(mantissa)) + power;
         const powerLogDouble = Math.log10(powerDouble);
         const powerLog = Math.floor(powerLogDouble);
-        const mantissaLog = Math.sign(mantissa) * (mantissa * Math.pow(10, power)) / Math.pow(10, Math.pow(10, powerLog));
+        const d = powerLogDouble - powerLog
+        const mantissaLog = Math.sign(mantissa) * Math.pow(10, Math.pow(10, d));
 
-        // Makes mantissaLog be rounded down to 2 decimal places
+        // // Makes mantissaLog be rounded down to 2 decimal places
         const mantissaLogLook = (Math.floor(mantissaLog * 100) / 100).toLocaleString(undefined, locOpts);
         // Makes the powerLog group 3 with commas
         const powerLogLook = typeof BigInt === 'function'
