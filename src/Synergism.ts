@@ -1503,10 +1503,10 @@ export const format = (
         const powerLogDouble = Math.log10(powerDouble);
 
         // Makes powerLogDouble be rounded down to 6 decimal places
-        const loglogOpts = { minimumFractionDigits: 6, maximumFractionDigits: 6 };
+        const loglogOpts = { minimumFractionDigits: 4, maximumFractionDigits: 4 };
         const powerLogLook = powerLogDouble.toLocaleString(undefined, loglogOpts);
         const mantissaLogLook = Math.sign(mantissa) < 0 ? '-' : '';
-        // returns format (-ee456,789.123000)
+        // returns format (-ee456,789.1230)
         return `${mantissaLogLook}ee${powerLogLook}`;
     } else if (power >= 1e6) {
         // if the power is greater than 1e6 apply notation scientific notation
