@@ -2903,6 +2903,8 @@ const [{ value: group }, { value: dec }] = IntlFormatter?.length !== 2
 // Number.toLocaleString opts for 2 decimal places
 const locOpts = { minimumFractionDigits: 2, maximumFractionDigits: 2 }
 
+const useDoubleLog = true;
+
 const padEvery = (str: string, places = 3) => {
   let step = 1
   let newStr = ''
@@ -3115,6 +3117,18 @@ export const format = (
     const powerLook = padEvery(power.toString())
     // returns format (1.23e456,789)
     return `${mantissaLook}e${powerLook}`
+  } else if (useDoubleLog && power >= 1e6) {
+    // Use double logarithmic representation
+    // input = mantissa * 10^power = mantissaLog * 10^(10^powerLog) = 10^powerDouble = 10^(10^powerLogDouble)
+    const powerDouble = Math.log10(Math.abs(mantissa)) + power;
+    const powerLogDouble = Math.log10(powerDouble);
+
+    // Makes powerLogDouble be rounded down to 4 decimal places
+    const loglogOpts = { minimumFractionDigits: 4, maximumFractionDigits: 4 };
+    const powerLogLook = powerLogDouble.toLocaleString(undefined, loglogOpts);
+    const mantissaLogLook = Math.sign(mantissa) < 0 ? '-' : '';
+    // returns format (-ee456,789.1230)
+    return `${mantissaLogLook}ee${powerLogLook}`;
   } else if (power >= 1e6) {
     if (!Number.isFinite(power)) {
       return 'Infinity'
