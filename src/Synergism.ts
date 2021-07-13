@@ -1498,18 +1498,15 @@ export const format = (
         return `${mantissaLook}e${powerLook}`;
     } else if (power >= 1e6) {
         // Use double logarithmic representation
-        const loglogOpts = { minimumFractionDigits: 4, maximumFractionDigits: 4 };
         // input = mantissa * 10^power = mantissaLog * 10^(10^powerLog) = 10^powerDouble = 10^(10^powerLogDouble)
         const powerDouble = Math.log10(Math.abs(mantissa)) + power;
         const powerLogDouble = Math.log10(powerDouble);
-        const powerLog = Math.floor(powerLogDouble * 10000) / 10000;
-        const d = powerLogDouble - powerLog
-        const mantissaLog = Math.sign(mantissa) * Math.pow(10, Math.pow(10, d));
 
-        // // Makes mantissaLog be rounded down to 4 decimal places
-        const mantissaLogLook = (Math.floor(mantissaLog * 100) / 100).toLocaleString(undefined, locOpts);
-        const powerLogLook = powerLog.toLocaleString(undefined, loglogOpts);
-        // returns format (1.23e456,789)
+        // Makes powerLogDouble be rounded down to 6 decimal places
+        const loglogOpts = { minimumFractionDigits: 6, maximumFractionDigits: 6 };
+        const powerLogLook = powerLogDouble.toLocaleString(undefined, loglogOpts);
+        const mantissaLogLook = Math.sign(mantissa) < 0 ? '-' : '';
+        // returns format (-ee456,789.123000)
         return `${mantissaLogLook}ee${powerLogLook}`;
     } else if (power >= 1e6) {
         // if the power is greater than 1e6 apply notation scientific notation
