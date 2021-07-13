@@ -1457,7 +1457,7 @@ export const format = (
     // If the power is less than 12 it's effectively 0
     if (power < -12) {
         return '0';
-    } else if (power < 6 || (long && power < 13)) {
+    } else if (power < 6 || (long && power < 7)) {
         // If the power is less than 6 or format long and less than 13 use standard formatting (123,456,789)
         // Gets the standard representation of the number, safe as power is guaranteed to be > -12 and < 13
         let standard = mantissa * Math.pow(10, power);
