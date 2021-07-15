@@ -2,12 +2,14 @@ name: ci
 
 on:
   push:
+    branches: [ free ]
     paths-ignore:
       - 'Pictures/**'
       - '*.md'
       - '*.html'
       - '*.json'
   pull_request:
+    branches: [ free ]
     paths-ignore:
       - 'Pictures/**'
       - '*.md'
