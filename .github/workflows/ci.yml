@@ -15,6 +15,7 @@ on:
       - '*.md'
       - '*.html'
       - '*.json'
+  workflow_dispatch:
 
 env:
   CI: true
