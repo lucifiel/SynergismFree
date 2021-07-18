@@ -2,6 +2,9 @@ name: Deploy to GitHub pages branch
 on:
   push:
     branches: [ free ]
+  repository_dispatch:
+    types: [ automerge ]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
