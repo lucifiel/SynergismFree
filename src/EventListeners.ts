@@ -14,7 +14,7 @@ import { antRepeat, sacrificeAnts, buyAntProducers, updateAntDescription, antUpg
 import { buyCubeUpgrades, cubeUpgradeDesc } from "./Cubes"
 import { buyPlatonicUpgrades, createPlatonicDescription } from "./Platonic"
 import { corruptionCleanseConfirm, corruptionDisplay } from "./Corruptions"
-import { exportSynergism, updateSaveString, promocodes, importSynergism, resetGame } from "./ImportExport"
+import { exportSynergism, updateSaveString, promocodes, importSynergism, resetGame, importString } from "./ImportExport"
 import { resetHistoryTogglePerSecond } from "./History"
 import { resetShopUpgrades, shopDescriptions, buyShopUpgrades, useConsumable, shopData } from "./Shop"
 import { Globals as G } from './Variables';
@@ -545,6 +545,8 @@ document.getElementById('saveStringInput').addEventListener('blur', e => updateS
 /*Submit Stats [Note: will eventually become obsolete if kong closes]*/ // document.getElementById('submitstats').addEventListener('click', () => submitStats()) 
 /*Promotion Codes*/ document.getElementById('promocodes').addEventListener('click', () => promocodes())
 /*Toggle Ascension Per-Second Setting*/ document.getElementById('historyTogglePerSecondButton').addEventListener('click', () => resetHistoryTogglePerSecond())
+
+document.getElementById('importStringButton').addEventListener('click', () => importString())
 
 // SHOP TAB
 

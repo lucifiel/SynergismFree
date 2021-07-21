@@ -138,6 +138,13 @@ export const resetGame = async () => {
     importSynergism(btoa(JSON.stringify(hold)), true);
 }
 
+export const importString = async () => {
+    const input = prompt("Paste in your save");
+    if (input && input !== '') {
+        return importSynergism(input);
+    }
+}
+
 export const importSynergism = (input: string, reset = false) => {
     if (typeof input !== 'string') {
         return Alert('Invalid character, could not save! 😕');
