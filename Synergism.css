@@ -855,6 +855,12 @@ p#themesTitle {
     outline: none;
 }
 
+#importStringButton {
+    width: 180px;
+    margin: 2px auto;
+    padding: 0 0 2px;
+}
+
 #savegame,
 #deleteGame,
 #importFileButton,

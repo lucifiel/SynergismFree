@@ -336,6 +336,13 @@ export const importData = async (
   return importFunc(save)
 }
 
+export const importString = async () => {
+    const input = prompt("Paste in your save");
+    if (input && input !== '') {
+        return await importSynergism(input);
+    }
+}
+
 export const importSynergism = async (input: string | null, reset = false) => {
   if (typeof input !== 'string') {
     return Alert(i18next.t('importexport.unableImport'))
