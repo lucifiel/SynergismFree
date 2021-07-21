@@ -47,6 +47,7 @@ import {
   addCodeAvailableUses,
   exportSynergism,
   importData,
+  importString,
   importSynergism,
   promocodes,
   promocodesInfo,
@@ -884,6 +885,8 @@ export const generateEventHandlers = () => {
   DOMCacheGetOrSet('resetHotkeys').addEventListener('click', () => resetHotkeys())
   DOMCacheGetOrSet('notation').addEventListener('click', () => toggleAnnotation())
   DOMCacheGetOrSet('iconSet').addEventListener('click', () => toggleIconSet(player.iconSet + 1))
+
+document.getElementById('importStringButton').addEventListener('click', () => importString())
 
   // SHOP TAB
 
