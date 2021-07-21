@@ -637,6 +637,13 @@ nav li:hover {
     transition-duration: 0.15s;
 }
 
+#importStringButton {
+    width: 180px;
+    margin: 2px auto;
+    padding: 0 0 2px;
+}
+
+#importStringButton:hover,
 #importFileButton:hover {
     background-color: #333;
 }
