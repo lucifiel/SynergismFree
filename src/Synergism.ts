@@ -3118,10 +3118,7 @@ const tick = () => {
     }
 }
 
-function tack(dt: number) {
-    if (document.readyState === 'complete')
-        eventCheck();
-        
+function tack(dt: number) {        
     if (!G['timeWarp']) {
         dailyResetCheck();
         //Adds Resources (coins, ants, etc)
@@ -3412,6 +3409,9 @@ export const reloadShit = async (reset = false) => {
     constantIntervals();
     changeTabColor();
     startHotkeys();
+
+    eventCheck();
+    interval(() => eventCheck(), 15000);
 }
 
 window.addEventListener('load', () => {
