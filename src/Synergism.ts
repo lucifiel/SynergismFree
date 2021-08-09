@@ -39,6 +39,7 @@ import { startHotkeys } from './Hotkeys';
 import { updatePlatonicUpgradeBG } from './Platonic';
 import { testing, version, lastUpdated } from './Config';
 import { DOMCacheGetOrSet } from './Cache/DOM';
+import {main as loadDashboard} from './Plugins/Dashboard';
 
 /**
  * Whether or not the current version is a testing version or a main version.
@@ -3408,6 +3409,7 @@ export const reloadShit = async (reset = false) => {
     constantIntervals();
     changeTabColor();
     startHotkeys();
+    loadDashboard();
 
     eventCheck();
     interval(() => eventCheck(), 15000);
