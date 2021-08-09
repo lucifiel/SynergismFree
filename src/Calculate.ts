@@ -1492,8 +1492,8 @@ export const forcedDailyReset = (testing = false) => {
     }
 }
 
-const eventStart = "06/26/2021 00:00:00"
-const eventEnd = "07/01/2021 23:59:59"
+const eventStart = "08/05/2021 00:00:00"
+const eventEnd = "08/12/2021 23:59:59"
 
 export const eventCheck = () => {
     const start = new Date(eventStart);
