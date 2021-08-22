@@ -414,6 +414,13 @@ nav li:hover {
     background-color: purple;
 }
 
+#singularitytab {
+    border-color: lightgoldenrodyellow;
+    background-color: black;
+    color: red
+    
+}
+
 #shoptab:hover {
     background-color: #b300b2;
 }
@@ -2504,7 +2511,7 @@ p[id$="BlessingsTotal"] {
 }
 
 .historyTableWrap {
-    max-height: 450px;
+    max-height: 650px;
     overflow-y: auto;
 }
 

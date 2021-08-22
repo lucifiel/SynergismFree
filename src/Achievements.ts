@@ -456,8 +456,8 @@ export const areward = (i: number): string => {
         188: `Gain +100 ascension count for all ascensions longer than 10 seconds. Also: Obtainium +${format(Math.min(100, player.ascensionCount / 50000), 2)}% [Max: 100% at 5M Ascensions]`,
         189: `Gain 20% of excess time after 10 seconds each Ascension as a linear multiplier to ascension count. Also: Cubes +${format(Math.min(200, player.ascensionCount / 2.5e6), 2)}% [Max: 200% at 500M Ascensions]`,
         193: `Gain ${format(Decimal.log(player.ascendShards.add(1), 10) / 4, 2)}% more Cubes on ascension!`,
-        195: `Gain ${format(Math.min(25000, Decimal.log(player.ascendShards.add(1), 10) / 4, 2))}% more Cubes and Tesseracts on ascension! Multiplicative with the other Ach. bonus [MAX: 25,000% at e100,000 Const]`,
-        196: `Gain ${format(Math.min(2000, Decimal.log(player.ascendShards.add(1), 10) / 50, 2))}% more Platonic Cubes on ascension! [MAX: 2,000% at e100,000 Const]`,
+        195: `Gain ${format(Math.min(25000, Decimal.log(player.ascendShards.add(1), 10) / 4), 2)}% more Cubes and Tesseracts on ascension! Multiplicative with the other Ach. bonus [MAX: 25,000% at e100,000 Const]`,
+        196: `Gain ${format(Math.min(2000, Decimal.log(player.ascendShards.add(1), 10) / 50), 2)}% more Platonic Cubes on ascension! [MAX: 2,000% at e100,000 Const]`,
         197: "You will unlock a stat tracker for ascensions.",
         198: "Gain +4% Cubes on ascension!",
         199: "Gain +4% Cubes on ascension!",
@@ -491,7 +491,7 @@ export const areward = (i: number): string => {
         256: `Hypercube Gain +${format(Math.min(15, Math.log10(corr[3]+1) * 0.6), 2, true)}% [Max: +15% at 1e25 Ascension Score]. Also, Overflux Powder conversion rate is 5% better!`,
         257: `Platonic Gain +${format(Math.min(15, Math.log10(corr[3]+1) * 0.6), 2, true)}% [Max: +15% at 1e25 Ascension Score]. Also, Overflux Powder conversion rate is 5% better!`,
         258: `Hepteract Gain +${format(Math.min(15, Math.log10(corr[3]+1) * 0.6), 2, true)}% [Max: +15% at 1e25 Ascension Score]`,
-        259: "Corruption score is increased by 1% for every expansion of Abyss Hepteract! [WIP]",
+        259: "Corruption score is increased by 1% for every expansion of Abyss Hepteract!",
         260: "You will gain 10% more ascension count, forever!",
         261: "You will gain 10% more ascension count, forever!",
         262: `Ascensions are ${format(Math.min(10, Math.log10(player.ascensionCount+1)), 2)}% faster! Max: +10%`,
@@ -500,7 +500,7 @@ export const areward = (i: number): string => {
         265: `Hepteracts +${format(Math.min(20, player.ascensionCount / 8e12), 2)}% [Max: 20% at 160T Ascensions]!`,
         266: `Quarks +${format(Math.min(10, player.ascensionCount / 1e14), 2)}% [Max: 10% at 1Qa Ascensions]!`,
         267: `Ascension Score is boosted by ${format(Math.min(100, Decimal.log(player.ascendShards.add(1), 10) / 1000), 2)}% [Max: 100% at 1e100,000 Const]`,
-        270: `Hepteract Gain is boosted by ${format(Decimal.log(player.ascendShards.add(1), 10) / 10000, 2)}% [Max: 100% at 1e1,000,000 const], Constant Upgrade 1 boosted to 1.06 (from 1.05), Constant Upgrade 2 boosted to 1.11 (from 1.10).`,
+        270: `Hepteract Gain is boosted by ${format(Math.min(100, Decimal.log(player.ascendShards.add(1), 10) / 10000), 2)}% [Max: 100% at 1e1,000,000 const], Constant Upgrade 1 boosted to 1.06 (from 1.05), Constant Upgrade 2 boosted to 1.11 (from 1.10).`,
         271: `When you open a Platonic Cube, gain ${format(Math.max(0, Math.min(1, (Decimal.log(player.ascendShards.add(1), 10) - 1e5) / 9e5)), 2, true)} Hypercubes, rounded down [Max: 1 at 1e1,000,000 Const]`
     }
 
