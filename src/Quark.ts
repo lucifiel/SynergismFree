@@ -33,7 +33,7 @@ const getBonus = async (): Promise<null | number> => {
         return j.bonus;
     } catch (e) {
         console.log(`workers.dev: ${(<Error>e).message}`);
-        return undefined;
+    return undefined;
     }
 }
 
@@ -158,8 +158,7 @@ export class QuarkHandler {
             const { bonus, fetched } = JSON.parse(localStorage.getItem('quarkBonus')) as { bonus: number, fetched: number };
             if (Date.now() - fetched < 60 * 1000 * 15) { // cache is younger than 15 minutes
                 console.log(
-                    `%c \tBonus of ${bonus}% quarks has been applied! \n\t(Cached at ${fetched})`, 
-                    'color:gold; font-size:60px; font-weight:bold; font-family:helvetica;'
+                    `%c \tBonus of ${bonus}% quarks has been applied! \n\t(Cached at ${fetched})`, ''
                 );
                 el.textContent = `Generous patrons give you a bonus of ${bonus}% more quarks!`;
                 return this.BONUS = bonus;
@@ -175,13 +174,13 @@ export class QuarkHandler {
         if (b === null) {
             return;
         } else if (Number.isNaN(b) || typeof b !== 'number') 
-            return Alert('No bonus could be applied, an error occurred. [NaN] :(');
+            return console.log('No bonus could be applied, an error occurred. [NaN] :(');
         else if (!Number.isFinite(b))
             return Alert('No bonus could be applied, an error occurred. [Infinity] :(');
         else if (b < 0)
             return Alert('No bonus could be applied, an error occurred. [Zero] :(');
 
-        console.log(`%c \tBonus of ${b}% quarks has been applied!`, 'color:gold; font-size:60px; font-weight:bold; font-family:helvetica;');
+        console.log(`%c \tBonus of ${b}% quarks has been applied!`, '');
         el.textContent = `Generous patrons give you a bonus of ${b}% more quarks!`;
         localStorage.setItem('quarkBonus', JSON.stringify({ bonus: b, fetched: Date.now() }));
         this.BONUS = b;
