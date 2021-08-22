@@ -885,8 +885,8 @@ export const generateEventHandlers = () => {
   DOMCacheGetOrSet('resetHotkeys').addEventListener('click', () => resetHotkeys())
   DOMCacheGetOrSet('notation').addEventListener('click', () => toggleAnnotation())
   DOMCacheGetOrSet('iconSet').addEventListener('click', () => toggleIconSet(player.iconSet + 1))
+  DOMCacheGetOrSet('importStringButton').addEventListener('click', () => importString())
 
-document.getElementById('importStringButton').addEventListener('click', () => importString())
 
   // SHOP TAB
 
