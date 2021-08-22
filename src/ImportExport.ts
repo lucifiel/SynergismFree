@@ -140,6 +140,14 @@ export const resetGame = async () => {
 }
 
 export const importString = async () => {
+    const importStringInput = getElementById<HTMLInputElement>('importStringInput');
+    const text = importStringInput.value;
+
+    if (text && text !== '') {
+        importStringInput.value = '';
+        return importSynergism(text);
+    }
+
     const input = prompt("Paste in your save");
     if (input && input !== '') {
         return importSynergism(input);
