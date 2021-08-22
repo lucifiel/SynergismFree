@@ -635,6 +635,10 @@ nav li:hover {
     transition-duration: 0.15s;
 }
 
+#importStringInput {
+    width: 180px;
+}
+
 #importStringButton {
     width: 180px;
     margin: 2px auto;
