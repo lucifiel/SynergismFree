@@ -691,12 +691,12 @@ nav li:hover {
     margin-right: 5px;
 }
 
-#promocodes {
+#promocodes, #usePromocodeAdd {
     transition-duration: 0.15s;
     padding: 5px;
 }
 
-#promocodes:hover {
+#promocodes:hover, #usePromocodeAdd {
     background-color: #333;
 }
 
