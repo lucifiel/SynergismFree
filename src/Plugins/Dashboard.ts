@@ -248,19 +248,25 @@ const subButtons = () => {
     }
 }
 
-/**
- * Add the elements to the DOM so they are usable.
- */
-const enable = () => {
+export const disable = () => {
     const style = document.head.querySelector('#syn_dashboard_plugin');
-    if (style !== null) { // plugin is already enabled
+    if (style !== null) { // plugin is enabled
         document.head.removeChild(style);
         document.querySelector('#settings > .subtabSwitcher').removeChild(button);
         button.removeEventListener('click', btnListener);
-        document.querySelectorAll<HTMLElement>('[id^="switchSettingSubTab"]').forEach(v => 
+        document.querySelectorAll<HTMLElement>('[id^="switchSettingSubTab"]').forEach(v =>
             v.removeEventListener('click', subButtons)
         );
         settingsTab.removeChild(tab);
+    }
+}
+
+/**
+ * Add the elements to the DOM so they are usable.
+ */
+export const enable = () => {
+    const style = document.head.querySelector('#syn_dashboard_plugin');
+    if (style !== null) { // plugin is already enabled
         return;
     }
 
