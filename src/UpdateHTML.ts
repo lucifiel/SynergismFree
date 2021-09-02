@@ -923,7 +923,7 @@ const AlertCB = (text: string, cb: (value: undefined) => void) => {
     popup.addEventListener('keyup', kbListener);
 } 
 
-export const PromptCB = (text: string, cb: (value: string | null) => void) => {
+export const PromptCB = (text: string, cb: (value: string | null) => void, initialValue: string = '') => {
     const conf = DOMCacheGetOrSet('confirmationBox');
     const confWrap = DOMCacheGetOrSet('promptWrapper');
     const overlay = document.querySelector<HTMLElement>('#transparentBG');
@@ -935,6 +935,7 @@ export const PromptCB = (text: string, cb: (value: string | null) => void) => {
     confWrap.style.display = 'block';
     overlay.style.display = 'block';
     popup.querySelector('label').textContent = text;
+    popup.querySelector('input').value = initialValue;
     popup.querySelector('input').focus();
 
     // kinda disgusting types but whatever
@@ -998,7 +999,7 @@ const NotificationCB = (text: string, time = 30000, cb: () => void) => {
 /*** Promisified version of the AlertCB function. */
 export const Alert = (text: string): Promise<undefined> => new Promise(res => AlertCB(text, res));
 /*** Promisified version of the PromptCB function. */
-export const Prompt = (text: string): Promise<string | null> => new Promise(res => PromptCB(text, res));
+export const Prompt = (text: string, initialValue: string = ''): Promise<string | null> => new Promise(res => PromptCB(text, res, initialValue));
 /*** Promisified version of the ConfirmCB function */
 export const Confirm = (text: string): Promise<boolean> => new Promise(res => ConfirmCB(text, res));
 /*** Promisified version of the NotificationCB function */
