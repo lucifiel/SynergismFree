@@ -39,6 +39,7 @@ import { startHotkeys } from './Hotkeys';
 import { updatePlatonicUpgradeBG } from './Platonic';
 import { testing, version, lastUpdated } from './Config';
 import { DOMCacheGetOrSet } from './Cache/DOM';
+import { main as loadDashboard } from './Plugins/Dashboard';
 
 /**
  * Whether or not the current version is a testing version or a main version.
@@ -3452,6 +3453,7 @@ export const reloadShit = async (reset = false) => {
     constantIntervals();
     changeTabColor();
     startHotkeys();
+    loadDashboard();
 
     eventCheck();
     interval(() => eventCheck(), 15000);
@@ -3467,7 +3469,7 @@ window.addEventListener('load', () => {
     const ver = DOMCacheGetOrSet('versionnumber');
     ver && (ver.textContent = 
         `You're ${testing ? 'testing' : 'playing'} v${version} - Seal of the Merchant` +
-        ` [Last Update: ${lastUpdated.getHours()}:${lastUpdated.getMinutes()} UTC ${lastUpdated.getDate()}-${lastUpdated.toLocaleString('en-us', {month: 'short'})}-${lastUpdated.getFullYear()}].` + 
+        ` [Last Update: ${lastUpdated.getHours()}:${lastUpdated.getMinutes()} UTC ${lastUpdated.getDate()}-${lastUpdated.toLocaleString('en-us', {month: 'short'})}-${lastUpdated.getFullYear()}].` +
         ` ${testing ? 'Savefiles cannot be used in live!' : ''}`
     );
     document.title = `Synergism v${version}`;
