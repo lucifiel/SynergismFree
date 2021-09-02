@@ -402,6 +402,7 @@ for (let index = 1; index <= 12; index++) {
 }
 //Part 3: Sacrifice
     DOMCacheGetOrSet('antSacrifice').addEventListener('click', () => sacrificeAnts())
+    DOMCacheGetOrSet('antsacrificebtn').addEventListener('click', () => sacrificeAnts())
 
 //Part 4: QoL Buttons
     DOMCacheGetOrSet('toggleAntMax').addEventListener('click', () => toggleAntMaxBuy())
