@@ -697,6 +697,7 @@ nav li:hover {
 }
 
 #promocodes,
+#usePromocodeAdd,
 #theme {
     transition-duration: 0.15s;
     padding: 5px;
@@ -704,7 +705,7 @@ nav li:hover {
     margin-bottom: 3px;
 }
 
-#promocodes:hover {
+#promocodes:hover, #usePromocodeAdd {
     background-color: #333;
 }
 

@@ -179,11 +179,17 @@ export const importSynergism = (input: string, reset = false) => {
 
 export const promocodes = async () => {
     const input = await Prompt('Got a code? Great! Enter it in (CaSe SeNsItIvE). \n [Note to viewer: this is for events and certain always-active codes. \n May I suggest you type in "synergism2021" or "add" perchance?]');
-    const el = DOMCacheGetOrSet("promocodeinfo");
 
     if (input === null) {
         return Alert('Alright, come back soon!')
     }
+
+    await usePromocode(input);
+}
+
+export const usePromocode = async (input: string) => {
+    const el = DOMCacheGetOrSet("promocodeinfo");
+
     if (input === "synergism2021" && !player.codes.get(1)) {
         player.codes.set(1, true);
         player.runeshards += 25;
@@ -210,7 +216,7 @@ export const promocodes = async () => {
         }
 
         const possibleAmount = Math.floor(Math.min(24 + 2 * player.shopUpgrades.calculator2, (Date.now() - player.rngCode) / hour))
-        const attemptsUsed = await Prompt(`You can use up to ${possibleAmount} attempts at once. How many would you like to use?`);
+        const attemptsUsed = await Prompt(`You can use up to ${possibleAmount} attempts at once. How many would you like to use?`, String(possibleAmount));
         if (attemptsUsed === null) {
              return Alert(`No worries, you didn't lose any of your uses! Come back later!`);
         }
