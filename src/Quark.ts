@@ -159,7 +159,7 @@ export class QuarkHandler {
             if (Date.now() - fetched < 60 * 1000 * 15) { // cache is younger than 15 minutes
                 console.log(
                     `%c \tBonus of ${bonus}% quarks has been applied! \n\t(Cached at ${fetched})`, 
-                    'color:gold; font-size:60px; font-weight:bold; font-family:helvetica;'
+                    ''
                 );
                 el.textContent = `Generous patrons give you a bonus of ${bonus}% more quarks!`;
                 return this.BONUS = bonus;
