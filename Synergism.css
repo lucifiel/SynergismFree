@@ -2102,10 +2102,18 @@ nav li:hover {
     background-color: black;
     border: 1px solid gold;
     transition-duration: 0.15s;
+    white-space: pre;
 }
 
 .cubeBtn:hover {
     background-color: #333;
+}
+
+#open20Cube,
+#open20Tesseract,
+#open20Hypercube,
+#open40kPlatonicCube {
+    display: none;
 }
 
 p[id$="BlessingsTotal"] {
