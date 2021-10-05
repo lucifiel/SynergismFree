@@ -151,8 +151,8 @@ export class WowCubes extends Cube {
         super('wowCubes', amount);
     }
 
-    open(value: number, max = false) {
-        let toSpend = max ? Number(this) : Math.min(Number(this), value);
+    open(value: number, max = false, k: number = 1) {
+        let toSpend = max ? Number(this) * k : Math.min(Number(this), value);
 
         if (value === 1 && player.cubeBlessings.accelerator >= 2e11 && player.achievements[246] < 1) {
             achievementaward(246)
@@ -213,8 +213,8 @@ export class WowTesseracts extends Cube {
         super('wowTesseracts', amount);
     }
 
-    open(value: number, max = false) {
-        const toSpend = max ? Number(this) : Math.min(Number(this), value);
+    open(value: number, max = false, k: number = 1) {
+        const toSpend = max ? Number(this) * k : Math.min(Number(this), value);
 
         player.wowTesseracts.sub(toSpend);
         player.tesseractOpenedDaily += toSpend
@@ -253,8 +253,8 @@ export class WowHypercubes extends Cube {
         super('wowHypercubes', amount);
     }
 
-    open(value: number, max = false) {
-        const toSpend = max ? Number(this) : Math.min(Number(this), value);
+    open(value: number, max = false, k: number = 1) {
+        const toSpend = max ? Number(this) * k : Math.min(Number(this), value);
 
         player.wowHypercubes.sub(toSpend);
         player.hypercubeOpenedDaily += toSpend
@@ -293,8 +293,8 @@ export class WowPlatonicCubes extends Cube {
         super('wowPlatonicCubes', amount);
     }
 
-    open(value: number, max = false) {
-        const toSpend = max ? Number(this) : Math.min(Number(this), value);
+    open(value: number, max = false, k : number = 1) {
+        const toSpend = max ? Number(this) * k : Math.min(Number(this), value);
 
         player.wowPlatonicCubes.sub(toSpend);
         player.platonicCubeOpenedDaily += toSpend;

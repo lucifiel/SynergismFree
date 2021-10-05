@@ -439,24 +439,28 @@ for (let index = 1; index <= 12; index++) {
     DOMCacheGetOrSet('open20Cube').addEventListener('click', () => player.wowCubes.open(20, false))
     DOMCacheGetOrSet('open1000Cube').addEventListener('click', () => player.wowCubes.open(1000, false))
     DOMCacheGetOrSet('openCustomCube').addEventListener('click', () => player.wowCubes.openCustom());
+    DOMCacheGetOrSet('openHalfCube').addEventListener('click', () => player.wowCubes.open(1, true, 0.5))
     DOMCacheGetOrSet('openMostCube').addEventListener('click', () => player.wowCubes.open(1, true))
     //Wow Tesseracts
     DOMCacheGetOrSet('open1Tesseract').addEventListener('click', () => player.wowTesseracts.open(1, false))
     DOMCacheGetOrSet('open20Tesseract').addEventListener('click', () => player.wowTesseracts.open(20, false))
     DOMCacheGetOrSet('open1000Tesseract').addEventListener('click', () => player.wowTesseracts.open(1000, false))
     DOMCacheGetOrSet('openCustomTesseract').addEventListener('click', () => player.wowTesseracts.openCustom());
+    DOMCacheGetOrSet('openHalfTesseract').addEventListener('click', () => player.wowTesseracts.open(1, true, 0.5))
     DOMCacheGetOrSet('openMostTesseract').addEventListener('click', () => player.wowTesseracts.open(1, true))
     //Wow Hypercubes
     DOMCacheGetOrSet('open1Hypercube').addEventListener('click', () => player.wowHypercubes.open(1, false))
     DOMCacheGetOrSet('open20Hypercube').addEventListener('click', () => player.wowHypercubes.open(20, false))
     DOMCacheGetOrSet('open1000Hypercube').addEventListener('click', () => player.wowHypercubes.open(1000, false))
     DOMCacheGetOrSet('openCustomHypercube').addEventListener('click', () => player.wowHypercubes.openCustom());
+    DOMCacheGetOrSet('openHalfHypercube').addEventListener('click', () => player.wowHypercubes.open(1, true, 0.5))
     DOMCacheGetOrSet('openMostHypercube').addEventListener('click', () => player.wowHypercubes.open(1, true))
     //Wow Platonic Cubes
     DOMCacheGetOrSet('open1PlatonicCube').addEventListener('click', () => player.wowPlatonicCubes.open(1, false))
     DOMCacheGetOrSet('open40kPlatonicCube').addEventListener('click', () => player.wowPlatonicCubes.open(4e4, false))
     DOMCacheGetOrSet('open1mPlatonicCube').addEventListener('click', () => player.wowPlatonicCubes.open(1e6, false))
     DOMCacheGetOrSet('openCustomPlatonicCube').addEventListener('click', () => player.wowPlatonicCubes.openCustom());
+    DOMCacheGetOrSet('openHalfPlatonicCube').addEventListener('click', () => player.wowPlatonicCubes.open(1, true, 0.5))
     DOMCacheGetOrSet('openMostPlatonicCube').addEventListener('click', () => player.wowPlatonicCubes.open(1, true))
 
 //Part 3: Platonic Upgrade Section
