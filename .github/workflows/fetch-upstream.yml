@@ -18,7 +18,7 @@ jobs:
 
     - name: Pull (Fast-Forward) upstream changes
       id: sync
-      uses: aormsby/Fork-Sync-With-Upstream-action@v2.3
+      uses: aormsby/Fork-Sync-With-Upstream-action@v3.1
       with:
         upstream_repository: Pseudo-Corp/SynergismOfficial
         upstream_branch: master
@@ -33,7 +33,7 @@ jobs:
     - name: Merge master -> free
       id: merge
       if: steps.sync.outputs.has_new_commits
-      uses: devmasx/merge-branch@v1.3.1
+      uses: devmasx/merge-branch@1.4.0
       with:
         type: now
         from_branch: master
