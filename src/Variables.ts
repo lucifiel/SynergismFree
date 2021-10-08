@@ -226,6 +226,7 @@ export const Globals: GlobalVariables = {
 
     shopConfirmation: true,
     shopBuyMax: false,
+    shopSell: false,
 
     globalAntMult: new Decimal("1"),
     antMultiplier: new Decimal("1"),
