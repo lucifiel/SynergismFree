@@ -20,11 +20,11 @@ jobs:
       id: sync
       uses: aormsby/Fork-Sync-With-Upstream-action@v3.1
       with:
-        upstream_repository: Pseudo-Corp/SynergismOfficial
-        upstream_branch: master
-        target_branch: master
-        git_pull_args: --ff-only
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        target_sync_branch: master
+        target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+        upstream_sync_repo: Pseudo-Corp/SynergismOfficial
+        upstream_sync_branch: master
+        upstream_pull_args: --ff-only
 
     - name: Check for new commits
       if: steps.sync.outputs.has_new_commits
