@@ -161,7 +161,7 @@ export class QuarkHandler {
                     `%c \tBonus of ${bonus}% quarks has been applied! \n\t(Cached at ${fetched})`, 
                     ''
                 );
-                el.textContent = `Generous patrons give you a bonus of ${bonus}% more quarks!`;
+                el.textContent = `Generous patrons give you a bonus of ${bonus}% more quarks!`
                 return this.BONUS = bonus;
             }
         } else if (!navigator.onLine) {
