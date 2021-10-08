@@ -1,4 +1,4 @@
-import { toggleAscStatPerSecond, toggleTabs, toggleSubTab, toggleBuyAmount, toggleAutoTesseracts, toggleSettings, toggleautoreset, toggleautobuytesseract, toggleShops, toggleAutoSacrifice, toggleautoenhance, toggleautofortify, updateRuneBlessingBuyAmount, toggleChallenges, toggleAutoChallengesIgnore, toggleAutoChallengeRun, updateAutoChallenge, toggleResearchBuy, toggleAutoResearch, toggleAntMaxBuy, toggleAntAutoSacrifice, toggleMaxBuyCube, toggleCorruptionLevel, toggleAutoAscend, toggleShopConfirmation, toggleAutoResearchMode, toggleBuyMaxShop } from "./Toggles"
+import { toggleAscStatPerSecond, toggleTabs, toggleSubTab, toggleBuyAmount, toggleAutoTesseracts, toggleSettings, toggleautoreset, toggleautobuytesseract, toggleShops, toggleAutoSacrifice, toggleautoenhance, toggleautofortify, updateRuneBlessingBuyAmount, toggleChallenges, toggleAutoChallengesIgnore, toggleAutoChallengeRun, updateAutoChallenge, toggleResearchBuy, toggleAutoResearch, toggleAntMaxBuy, toggleAntAutoSacrifice, toggleMaxBuyCube, toggleCorruptionLevel, toggleAutoAscend, toggleShopConfirmation, toggleAutoResearchMode, toggleBuyMaxShop, toggleSellShop } from "./Toggles"
 import { resetrepeat, updateAutoReset, updateTesseractAutoBuyAmount } from "./Reset"
 import { player, resetCheck, saveSynergy } from "./Synergism"
 import { boostAccelerator, buyAccelerator, buyMultiplier, buyProducer, buyCrystalUpgrades, buyParticleBuilding, buyTesseractBuilding, buyUpgrades, buyRuneBonusLevels } from "./Buy"
@@ -565,6 +565,7 @@ TODO: Fix this entire tab it's utter shit
 /*Respec The Upgrades*/ DOMCacheGetOrSet('resetShopUpgrades').addEventListener('click', () => resetShopUpgrades())
 /*Toggle Shop Confirmations*/ DOMCacheGetOrSet('toggleConfirmShop').addEventListener('click', () => toggleShopConfirmation())
 /*Toggle Shop Buy Max*/ DOMCacheGetOrSet('toggleBuyMaxShop').addEventListener('click', () => toggleBuyMaxShop())
+/*Toggle Shop Buy Max*/ DOMCacheGetOrSet('toggleSellShop').addEventListener('click', () => toggleSellShop())
 
 // Part 2: Potions
 /*Offering Potion*/

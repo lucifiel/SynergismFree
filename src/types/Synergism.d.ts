@@ -656,6 +656,7 @@ export interface GlobalVariables {
 
     shopConfirmation: boolean,
     shopBuyMax: boolean,
+    shopSell: boolean,
 
     globalAntMult: Decimal
     antMultiplier: Decimal

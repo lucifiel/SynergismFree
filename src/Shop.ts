@@ -306,12 +306,12 @@ type ShopUpgradeNames = 'offeringPotion' | 'obtainiumPotion' |
                         'chronometer2'| 'chronometer3'| 'infiniteAscent' | 'calculator' |
                         'calculator2' | 'calculator3' | 'constantEX' | 'powderEX'
 
-export const getShopCosts = (input: ShopUpgradeNames) => {
-    if (shopData[input].type === shopUpgradeTypes.CONSUMABLE || shopData[input].maxLevel === 1){
+export const getShopCosts = (input: ShopUpgradeNames, shopUpgradeLevelMod: number = 0) => {
+    if (shopData[input].type === shopUpgradeTypes.CONSUMABLE || shopData[input].maxLevel === 1) {
         return shopData[input].price
     }
     else {
-        const priceIncreaseMult = player.shopUpgrades[input]
+        const priceIncreaseMult = Math.max(player.shopUpgrades[input] + shopUpgradeLevelMod, 0)
         return shopData[input].price + shopData[input].priceIncrease * priceIncreaseMult
     }
 }
@@ -463,10 +463,27 @@ export const friendlyShopName = (input: ShopUpgradeNames) => {
 
 export const buyShopUpgrades = async (input: ShopUpgradeNames) => {
     let p = true;
+    const zeroLevel = player.shopUpgrades[input] === 0;
     const maxLevel = player.shopUpgrades[input] === shopData[input].maxLevel;
+    const minLevel = player.shopUpgrades[input] === shopData[input].refundMinimumLevel;
     const canAfford = Number(player.worlds) >= getShopCosts(input);
+    const needConfirm = G['shopConfirmation'] || !shopData[input].refundable;
 
-    if (G['shopConfirmation'] || !shopData[input].refundable) {
+    if (G['shopSell'] && needConfirm) {
+        if (zeroLevel) {
+            await Alert("You can't sell " + friendlyShopName(input) + " because you don't have it.")
+        } else if (!shopData[input].refundable || minLevel) {
+            await Alert("You can't sell " + friendlyShopName(input) + " because it is not refundable.")
+        } else {
+            const shopCosts = !G['shopBuyMax']
+                ? getShopCosts(input, -1)
+                : Array(player.shopUpgrades[input] - shopData[input].refundMinimumLevel)
+                    .fill(0)
+                    .map((_, i) => getShopCosts(input, -1 - i))
+                    .reduce((sum, current) => sum + current);
+            p = await Confirm("Are you sure you'd like to sell " + friendlyShopName(input) + " for " + format(shopCosts) + " Quarks? Press 'OK' to finalize sell.");
+        }
+    } else if (needConfirm) {
         if (maxLevel) {
             await Alert("You can't purchase " + friendlyShopName(input) + " because you already have the max level!")
         }
@@ -478,16 +495,33 @@ export const buyShopUpgrades = async (input: ShopUpgradeNames) => {
             if (!shopData[input].refundable) {
                 noRefunds = " REMINDER: No refunds!"
             }
-            p = await Confirm("Are you sure you'd like to purchase " + friendlyShopName(input) + " for " + format(getShopCosts(input)) + " Quarks? Press 'OK' to finalize purchase." + noRefunds);
+            const shopCosts = !G['shopBuyMax']
+                ? getShopCosts(input)
+                : Array(shopData[input].maxLevel - player.shopUpgrades[input])
+                    .fill(0)
+                    .map((_, i) => getShopCosts(input, i))
+                    .reduce((sum, current) => sum + current);
+            p = await Confirm("Are you sure you'd like to purchase " + friendlyShopName(input) + " for " + format(shopCosts) + " Quarks? Press 'OK' to finalize purchase." + noRefunds);
         }
     }
 
     if (p) {
-        if (G['shopBuyMax']) {
+        if (G['shopBuyMax'] && G['shopSell']) {
+            while (player.shopUpgrades[input] > shopData[input].refundMinimumLevel && shopData[input].refundable) {
+                // use sub as it does not apply quarks bonus
+                player.worlds.sub(-getShopCosts(input, -1));
+                player.shopUpgrades[input] -= 1
+            }
+        } else if (G['shopBuyMax']) {
             //Can't use canAfford and maxLevel here because player's quarks change and shop levels change during loop
             while (Number(player.worlds) >= getShopCosts(input) && player.shopUpgrades[input] < shopData[input].maxLevel) {
                 player.worlds.sub(getShopCosts(input));
                 player.shopUpgrades[input] += 1
+            }
+        } else if (G['shopSell']) {
+            if (player.shopUpgrades[input] > 0 && shopData[input].refundable && !minLevel) {
+                player.worlds.add(getShopCosts(input, -1));
+                player.shopUpgrades[input] -= 1
             }
         } else {
             if (canAfford && !maxLevel) {

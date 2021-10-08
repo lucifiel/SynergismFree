@@ -665,6 +665,15 @@ export const toggleBuyMaxShop = () => {
     G['shopBuyMax'] = !G['shopBuyMax'];
 }
 
+export const toggleSellShop = () => {
+    const el = DOMCacheGetOrSet("toggleSellShop")
+    el.textContent = G['shopSell']
+        ? "Sell: OFF"
+        : "Sell: ON";
+
+    G['shopSell'] = !G['shopSell'];
+}
+
 export const toggleAntMaxBuy = () => {
     const el = DOMCacheGetOrSet("toggleAntMax");
     el.textContent = player.antMax 
