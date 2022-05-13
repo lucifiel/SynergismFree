@@ -3427,6 +3427,7 @@ document.addEventListener('keydown', (event) => {
 
 /**
  * Reloads shit.
+ * @param reset if this param is passed, offline progression will not be calculated.
  */
 export const reloadShit = async (reset = false) => {
     for (const timer of intervalHold)
@@ -3444,10 +3445,13 @@ export const reloadShit = async (reset = false) => {
     }
 
     void loadSynergy();
-    if (!reset) 
+
+    if (!reset) {
         calculateOffline();
-    else
-        player.worlds = new QuarkHandler({ quarks: 0, bonus: 0 });
+    } else {
+        player.worlds = new QuarkHandler({ bonus: 0, quarks: 0 });
+    }
+
     saveSynergy();
     toggleauto();
     revealStuff();
@@ -3483,4 +3487,13 @@ window.addEventListener('load', () => {
     corruptionLoadoutTableCreate();
 
     void reloadShit();
+});
+
+window.addEventListener('unload', () => {
+    // This fixes a bug in Chrome (who would have guessed?) that
+    // wouldn't properly load elements if the user scrolled down
+    // and reloaded a page. Why is this a bug, Chrome? Why would
+    // a page that is reloaded be affected by what the user did
+    // beforehand? How does anyone use this buggy browser???????
+    window.scrollTo(0, 0);
 });
