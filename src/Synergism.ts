@@ -412,7 +412,7 @@ export const player: Player = {
 
     // create a Map with keys defaulting to false
     codes: new Map(
-        Array.from({ length: 35 }, (_, i) => [i + 1, false])
+        Array.from({ length: 36 }, (_, i) => [i + 1, false])
     ),
 
     loaded1009: true,
@@ -644,10 +644,11 @@ export const player: Player = {
     singularityCount: 0,
     goldenQuarks: 0,
     quarksThisSingularity: 0,
+    dailyCodeUsed: false,
 }
 
 export const blankSave = Object.assign({}, player, {
-    codes: new Map(Array.from({ length: 35 }, (_, i) => [i + 1, false]))
+    codes: new Map(Array.from({ length: 36 }, (_, i) => [i + 1, false]))
 });
 
 export const saveSynergy = (button?: boolean) => {
@@ -1533,6 +1534,10 @@ export const format = (
         // returns format (-ee456,789.1230)
         return `${mantissaLogLook}ee${powerLogLook}`;
     } else if (power >= 1e6) {
+        if (!Number.isFinite(power)) {
+            return 'Infinity';
+        }
+
         // if the power is greater than 1e6 apply notation scientific notation
         // Makes mantissa be rounded down to 2 decimal places
         const mantissaLook = testing && truncate ? '' : (Math.floor(mantissa * 100) / 100).toLocaleString(undefined, locOpts);
