@@ -317,9 +317,9 @@ export const getShopCosts = (input: ShopUpgradeNames, shopUpgradeLevelMod: numbe
 }
 
 export const shopDescriptions = (input: ShopUpgradeNames) => {
-    const rofl = DOMCacheGetOrSet("quarkdescription");
-    const lol = DOMCacheGetOrSet("quarkeffect");
-    const refundable = DOMCacheGetOrSet('quarkRefundable')
+    const rofl = DOMCacheGetOrSet("quarkdescription")!;
+    const lol = DOMCacheGetOrSet("quarkeffect")!;
+    const refundable = DOMCacheGetOrSet('quarkRefundable')!;
 
     rofl.textContent = shopData[input].description;
 
@@ -597,8 +597,11 @@ export const resetShopUpgrades = async (ignoreBoolean = false) => {
 }
 
 export const getQuarkInvestment = (upgrade: ShopUpgradeNames) => {
-    const val = shopData[upgrade].price * player.shopUpgrades[upgrade] + 
+    if (!(upgrade in shopData) || !(upgrade in player.shopUpgrades)) return 0;
+
+    const val = shopData[upgrade].price * player.shopUpgrades[upgrade] +
                 shopData[upgrade].priceIncrease * (player.shopUpgrades[upgrade] - 1) * (player.shopUpgrades[upgrade]) / 2
     console.log("gained from " + upgrade + ":" + format(val, 0, true))
-    return val
+
+    return val;
 }
