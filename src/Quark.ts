@@ -5,41 +5,6 @@ import { calculateCubeQuarkMultiplier, calculateQuarkMultiplier } from './Calcul
 import { format, player } from './Synergism'
 import { Alert } from './UpdateHTML'
 
-const getBonus = async (): Promise<null | number> => {
-  if (!navigator.onLine) {
-    return null
-  }
-  if (document.visibilityState === 'hidden') {
-    return null
-  }
-
-  try {
-    const r = await fetch('https://synergism-quarks.khafra.workers.dev/')
-    const j = await r.json() as { bonus: number }
-
-    return j.bonus
-  } catch (e) {
-    console.log(`workers.dev: ${(e as Error).message}`)
-  }
-
-  try {
-    const r = await fetch('https://api.github.com/gists/44be6ad2dcf0d44d6a29dffe1d66a84a', {
-      headers: {
-        Accept: 'application/vnd.github.v3+json'
-      }
-    })
-
-    const t = await r.json() as { files: Record<string, { content: string }> }
-    const b = Number(t.files['SynergismQuarkBoost.txt'].content)
-
-    return b
-  } catch (e) {
-    console.log(`GitHub Gist: ${(e as Error).message}`)
-  }
-
-  return null
-}
-
 export const quarkHandler = () => {
   let maxTime = 90000 // In Seconds
   if (player.researches[195] > 0) {
@@ -125,23 +90,15 @@ export class QuarkHandler {
   async getBonus () {
     const el = DOMCacheGetOrSet('currentBonus')
 
-    if (location.hostname === 'synergism.cc') {
-      return
-    }
-
     if (localStorage.getItem('quarkBonus') !== null) { // is in cache
       const { bonus, fetched } = JSON.parse(localStorage.getItem('quarkBonus')!) as { bonus: number; fetched: number }
       if (Date.now() - fetched < 60 * 1000 * 15) { // cache is younger than 15 minutes
         el.textContent = `Generous patrons give you a bonus of ${bonus}% more Quarks!`
         return this.BONUS = bonus
       }
-    } else if (!navigator.onLine) {
-      return el.textContent = 'Current Bonus: N/A% (offline)!'
-    } else if (document.hidden) {
-      return el.textContent = 'Current Bonus: N/A% (unfocused)!'
     }
 
-    const b = await getBonus()
+    const b = 80
 
     if (b === null) {
       return
