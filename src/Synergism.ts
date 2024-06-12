@@ -155,7 +155,7 @@ import {
 } from './Hepteracts'
 import { disableHotkeys } from './Hotkeys'
 import { init as i18nInit } from './i18n'
-import { handleLogin } from './Login'
+// import { handleLogin } from './Login'
 import { octeractData, OcteractUpgrade } from './Octeracts'
 import { updatePlatonicUpgradeBG } from './Platonic'
 import { getQuarkBonus, QuarkHandler } from './Quark'
@@ -6365,7 +6365,7 @@ window.addEventListener('load', async () => {
   corruptionButtonsAdd()
   corruptionLoadoutTableCreate()
 
-  handleLogin().catch(console.error)
+  // handleLogin().catch(console.error)
 })
 
 window.addEventListener('unload', () => {
