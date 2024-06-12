@@ -1,18 +1,21 @@
-name: ci
+name: free ci
 
 on:
   push:
+    branches: [ free ]
     paths-ignore:
       - 'Pictures/**'
       - '*.md'
       - '*.html'
       - '*.json'
   pull_request:
+    branches: [ free ]
     paths-ignore:
       - 'Pictures/**'
       - '*.md'
       - '*.html'
       - '*.json'
+  workflow_dispatch:
 
 env:
   CI: true
@@ -23,17 +26,16 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node.js
-        uses: actions/setup-node@v2
+      - uses: lucifiel/checkout@v4
         with:
-          node-version: ${{ matrix.node-version }}
-
+          persist-credentials: false
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
       - name: Install
         run: |
           npm install

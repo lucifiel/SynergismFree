@@ -1,20 +1,23 @@
-name: Deploy to GitHub pages branch
+name: free Deploy to GitHub pages branch
 on:
   push:
-    branches: master
-    
+    branches: [ free ]
+  repository_dispatch:
+    types: [ automerge ]
+  workflow_dispatch:
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: lucifiel/checkout@v4
         with:
           persist-credentials: false 
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: lts/*
       - name: Install deps
         run: |
           npm install
@@ -30,7 +33,7 @@ jobs:
         run: |
           rm -rf targetdir
           mkdir -p targetdir
-          mv dist Pictures index.html Synergism.css favicon.ico targetdir/
+          mv dist Pictures index.html export.html Synergism.css favicon.ico targetdir/
       - name: Deploy with the $GME emoji for some reason 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:

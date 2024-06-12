@@ -1,8 +1,8 @@
-name: Fetch Pseudo-Corp/SynergismOfficial upstream changes
+name: free Fetch Pseudo-Corp/SynergismOfficial upstream changes
 on:
-  schedule:
-    - cron:  '0 16 * * *'
-    # scheduled at 16:00 every day
+#  # scheduled at 16:00 every day
+#  schedule:
+#    - cron:  '0 16 * * *'
   workflow_dispatch:
 
 jobs:
@@ -12,13 +12,13 @@ jobs:
 
     steps:
     - name: Checkout master
-      uses: lucifiel/checkout@v2
+      uses: lucifiel/checkout@v4
       with:
         ref: master
 
     - name: Pull (Fast-Forward) upstream changes
       id: sync
-      uses: aormsby/Fork-Sync-With-Upstream-action@v3.1
+      uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
       with:
         target_sync_branch: master
         target_repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -42,7 +42,7 @@ jobs:
 
     - name: Repository Dispatch
       if: steps.sync.outputs.has_new_commits
-      uses: peter-evans/repository-dispatch@v1
+      uses: peter-evans/repository-dispatch@v3
       with:
         token: ${{ secrets.GA_SECRET }}
         event-type: automerge
