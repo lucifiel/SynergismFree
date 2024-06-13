@@ -42,10 +42,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Pseudo-Corp/SynergismOfficial.git"
+    "url": "git+https://github.com/lucifiel/SynergismFree.git"
   },
   "keywords": [
     "synergism",
+    "synergismfree",
     "synergismofficial"
   ],
   "author": "Platonic/Pseudonian",
@@ -53,5 +54,5 @@
   "bugs": {
     "url": "https://github.com/Pseudo-Corp/SynergismOfficial/issues"
   },
-  "homepage": "https://github.com/Pseudo-Corp/SynergismOfficial#readme"
+  "homepage": "https://github.com/lucifiel/SynergismFree#readme"
 }

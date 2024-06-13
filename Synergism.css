@@ -855,6 +855,10 @@ p#themesTitle {
     outline: none;
 }
 
+#importStringInput {
+    width: 180px;
+}
+
 #importStringButton {
     width: 180px;
     margin: 2px auto;

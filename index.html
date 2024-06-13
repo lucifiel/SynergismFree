@@ -7,9 +7,9 @@
     <meta property="og:title" content="Synergism">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pseudo-corp.github.io/SynergismOfficial">
-    <meta property="og:image" content="https://pseudo-corp.github.io/SynergismOfficial/Pictures/logo.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+<!--    <meta property="og:image" content="https://pseudo-corp.github.io/SynergismOfficial/Pictures/logo.png">-->
+<!--    <meta property="og:image:width" content="1200">-->
+<!--    <meta property="og:image:height" content="630">-->
     <meta property="og:description" content="The greatest idle game of all time. This is the best idle game ever.">
 
     <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="16x16">
@@ -50,7 +50,7 @@
         </div>
     </div>
     <div id="offlineBlur">
-        <img id="logo" src="Pictures/logo.png" alt="The Synergism Logo">
+<!--        <img id="logo" src="Pictures/logo.png" alt="The Synergism Logo">-->
         <button id="preloadDeleteGame" style="display: none;">Delete savefile</button>
     </div>
     <div id="offlineContainer" style="display: none;">
@@ -2980,7 +2980,7 @@
     $STAGE$ for synergism stage">
                         <input id="saveStringInput">
                     </label>
-                    <p id="saveString" class="tightText" title="Use $VERSION$ for full version, $VER$ for version number,
+                    <p id="saveString" class="tightText" style="white-space: pre" title="Use $VERSION$ for full version, $VER$ for version number,
     $TIME$ for 24h time, $TIME12$ for 12h,
     $YEAR$ or $Y$ for year, $MONTH$ or $M$ for month,
     $DAY$ or $D$ for day, $HOUR$ or $H$ for hour,
@@ -2996,22 +2996,15 @@
                     <label id="importFileButton" for="importfile" style="font-size: 0.9em; line-height: 1.4em;" i18n="settings.loadFromFile"></label>
                     <input type="file" id="importfile" style="display: none">
                     <button id="importStringButton" style="border: 2px solid cadetblue">Load from text</button>
+                <label title="Paste savegame here">
+                    <input id="importStringInput"/>
+                </label>
                 <button id="savegame" style="border: 2px solid plum" i18n="settings.saveManually"></button>
                     <button id="deleteGame" style="border: 2px solid red" i18n="settings.deleteSave"></button>
                     <p id="saveinfo" style="color: limegreen"></p>
                 </div>
                 <div id="thirdParty">
-                    <div id="discord">
-                        <p style="color: gold" i18n="settings.joinDiscord"></p>
-                        <a id="discordhref" href="https://www.discord.gg/ameCknq" target="_blank" rel="noopener noreferrer nofollow">
-                            <img id="discordicon" alt="Discord Icon" src="Pictures/Default/icon.gif" title="Click to join the official Discord!" width="100" height="100" loading="lazy">
-                        </a>
-                    </div>
                     <div id="patreon">
-                        <p style="color: gold" i18n="settings.joinPatreon"></p>
-                        <a id="patreonhref" href="https://www.patreon.com/synergism" target="_blank" rel="noopener noreferrer nofollow">
-                            <img id="patreonicon" alt="Patreon Icon" src="Pictures/Default/Patreonlogo.png" title="Click to support development!" loading="lazy">
-                        </a>
                         <p id="currentBonus" style="color: springgreen">Current Bonus: 0%</p>
                     </div>
                     <div id="patchnotes">
