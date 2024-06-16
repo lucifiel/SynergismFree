@@ -79,13 +79,36 @@ export const eventCheck = async () => {
     return
   }
 
-  const response = await fetch('https://synergism.cc/api/v1/events/get')
+  // const response = await fetch('https://synergism.cc/api/v1/events/get')
+  //
+  // if (!response.ok) {
+  //   throw new Error('God fucking dammit')
+  // }
 
-  if (!response.ok) {
-    throw new Error('God fucking dammit')
-  }
+  // const apiEvents = await response.json() as APIEventData[]
+  const eventsText = [{
+    "name": "5th Anniversary",
+    "url": "https://www.youtube.com/watch?v=W8WSZwX2xhg",
+    "start": "2024-07-02T00:00",
+    "end": "2024-07-03T23:59",
+    "quark": 2,
+    "goldenQuark": 0,
+    "cubes": 2,
+    "powderConversion": 2,
+    "ascensionSpeed": 2,
+    "globalSpeed": 2,
+    "ascensionScore": 0,
+    "antSacrifice": 2,
+    "offering": 2,
+    "obtainium": 2,
+    "octeract": 2,
+    "blueberryTime": 2,
+    "ambrosiaLuck": 2,
+    "oneMind": 0.8,
+    "color": "#ffea00"
+  }]
 
-  const apiEvents = await response.json() as APIEventData[]
+  const apiEvents = eventsText as APIEventData[]
 
   const events: EventData[] = apiEvents.map((value) => {
     const { name, color, start, end, url, ...buffs } = value
