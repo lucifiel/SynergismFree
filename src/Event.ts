@@ -89,7 +89,7 @@ export const eventCheck = async () => {
   const eventsText = [{
     "name": "5th Anniversary",
     "url": "https://www.youtube.com/watch?v=W8WSZwX2xhg",
-    "start": "2024-06-20T00:00",
+    "start": "2024-07-02T00:00",
     "end": "2024-07-03T23:59",
     "quark": 2,
     "goldenQuark": 0,
