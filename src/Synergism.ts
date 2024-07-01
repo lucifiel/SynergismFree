@@ -3167,22 +3167,28 @@ export const format = (
 }
 
 export const formatTimeShort = (
-  seconds: number,
-  msMaxSeconds?: number
+    seconds: number,
+    msMaxSeconds?: number
 ): string => {
-    const d = ((seconds >= 86400) ? `${format(Math.floor(seconds / 86400))}d` : '')
-    const h = ((seconds >= 3600) ? `${format(Math.floor(seconds / 3600) % 24)}h` : '')
-    const m = ((seconds >= 60) ? `${format(Math.floor(seconds / 60) % 60)}m` : '')
-    const ss = ((msMaxSeconds && seconds < msMaxSeconds)
-        ? `.${Math.floor((seconds % 1) * 1000).toString().padStart(3, '0')}` : '')
-    //Don't show seconds when you're over 100 days, like honestly
-    const s = ((seconds >= 8640000) ? '' : `${format(Math.floor(seconds) % 60)}${ss}s`)
+  const d = (seconds >= 86400) ? `${format(Math.floor(seconds / 86400))}d` : ''
+  if (seconds >= 86400000) {
+    // Hide hours when you're over 1000 days
+    return d;
+  }
 
-    if (seconds >= 86400000) {
-        // Hide hours when you're over 1000 days
-        return d;
-    }
-    return d + h + m + s;
+  const h = (seconds >= 3600) ? `${format(Math.floor(seconds / 3600) % 24)}h` : ''
+  const m = (seconds >= 60) ? `${format(Math.floor(seconds / 60) % 60)}m` : ''
+  if (seconds >= 8640000) {
+    //Don't show seconds when you're over 100 days, like honestly
+    return d + h + m;
+  }
+
+  const s = format(Math.floor(seconds) % 60)
+  if (msMaxSeconds && seconds < msMaxSeconds) {
+    const ss = `.${Math.floor((seconds % 1) * 1000).toString().padStart(3, '0')}s`;
+    return d + h + m + s + ss;
+  }
+  return `${d}${h}${m}${s}s`;
 }
 
 export const updateAllTick = (): void => {
