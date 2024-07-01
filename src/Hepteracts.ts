@@ -282,15 +282,17 @@ export class HepteractCraft {
       }
     }
 
-    const expandPrompt = await Confirm(i18next.t('hepteracts.expandPrompt', {
-      x: format(this.CAP),
-      y: format(heptCap),
-      z: format(heptCap * expandMultiplier),
-      a: format(expandMultiplier, 2, true)
-    }))
+    if (player.toggles[10035]) {
+      const expandPrompt = await Confirm(i18next.t('hepteracts.expandPrompt', {
+        x: format(this.CAP),
+        y: format(heptCap),
+        z: format(heptCap * expandMultiplier),
+        a: format(expandMultiplier, 2, true)
+      }))
 
-    if (!expandPrompt) {
-      return this
+      if (!expandPrompt) {
+        return this
+      }
     }
 
     // Avoid a double-expand exploit due to player waiting to confirm until after autocraft fires and expands
