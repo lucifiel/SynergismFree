@@ -3177,14 +3177,14 @@ export const formatTimeShort = (
     return d;
   }
 
-  const h = (seconds >= 3600) ? `${format(Math.floor(seconds / 3600) % 24)}h` : ''
-  const m = (seconds >= 60) ? `${format(Math.floor(seconds / 60) % 60)}m` : ''
+  const h = (seconds >= 3600) ? `${format(Math.floor(seconds / 3600) % 24).toString().padStart(2, '0')}h` : ''
+  const m = (seconds >= 60) ? `${format(Math.floor(seconds / 60) % 60).toString().padStart(2, '0')}m` : ''
   if (seconds >= 8640000) {
     //Don't show seconds when you're over 100 days, like honestly
     return d + h + m;
   }
 
-  const s = format(Math.floor(seconds) % 60)
+  const s = format(Math.floor(seconds) % 60).toString().padStart(2, '0')
   if (msMaxSeconds && seconds < msMaxSeconds) {
     const ss = `.${Math.floor((seconds % 1) * 1000).toString().padStart(3, '0')}s`;
     return d + h + m + s + ss;
