@@ -3171,23 +3171,34 @@ export const formatTimeShort = (
     seconds: number,
     msMaxSeconds?: number
 ): string => {
-  const d = (seconds >= 86400) ? `${format(Math.floor(seconds / 86400))}d` : ''
-  if (seconds >= 86400000) {
+  let x = seconds;
+  const days = (x / 86400) | 0;
+  const d = (days > 0) ? `${format(days)}d` : ''
+  if (days >= 1000) {
     // Hide hours when you're over 1000 days
     return d;
   }
 
-  const h = (seconds >= 3600) ? `${format(Math.floor(seconds / 3600) % 24).toString().padStart(2, '0')}h` : ''
-  const m = (seconds >= 60) ? `${format(Math.floor(seconds / 60) % 60).toString().padStart(2, '0')}m` : ''
-  if (seconds >= 8640000) {
+  x -= days * 86400;
+  const hours = (x / 3600) | 0;
+  const h = (hours > 0) ? `${hours < 10 ? '0' : ''}${hours}h` : ''
+
+  x -= hours * 3600;
+  const minutes = (x / 60) | 0;
+  const m = (minutes > 0) ? `${minutes < 10 ? '0' : ''}${minutes}m` : ''
+
+  if (days >= 100) {
     //Don't show seconds when you're over 100 days, like honestly
-    return d + h + m;
+    return `${d}${h}${m}`;
   }
 
-  const s = format(Math.floor(seconds) % 60).toString().padStart(2, '0')
+  const wholePart = x | 0;
+  const s = `${wholePart < 10 ? '0' : ''}${wholePart}`
+
   if (msMaxSeconds && seconds < msMaxSeconds) {
-    const ss = `.${Math.floor((seconds % 1) * 1000).toString().padStart(3, '0')}s`;
-    return d + h + m + s + ss;
+    const fractionalPart = ((x - wholePart) * 1000 + 0.5) | 0;
+    const ss = fractionalPart.toString().padStart(3, '0');
+    return `${d}${h}${m}${s}.${ss}s`;
   }
   return `${d}${h}${m}${s}s`;
 }
