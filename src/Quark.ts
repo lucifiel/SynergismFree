@@ -1,5 +1,6 @@
 import { calculateCubeQuarkMultiplier, calculateQuarkMultiplier } from './Calculate'
 import { format, player } from './Synergism'
+import {DOMCacheGetOrSet} from "./Cache/DOM";
 
 export const quarkHandler = () => {
   let maxTime = 90000 // In Seconds
@@ -38,6 +39,21 @@ export const quarkHandler = () => {
 }
 
 let bonus = 0
+
+export const handleLoginBonus = () => {
+  const currentBonus = DOMCacheGetOrSet('currentBonus')
+
+  const globalBonus = 58.4
+  const personalBonus = 13.7
+
+  setQuarkBonus(100 * (1 + globalBonus / 100) * (1 + personalBonus / 100) - 100)
+  player.worlds = new QuarkHandler(Number(player.worlds))
+
+  currentBonus.textContent = `Generous patrons give you a bonus of ${globalBonus}% more Quarks!`
+
+  currentBonus.textContent +=
+      ` You also receive an extra ${personalBonus}% bonus for being a good person! Multiplicative with global bonus!`
+}
 
 export const setQuarkBonus = (newBonus: number) => bonus = newBonus
 export const getQuarkBonus = () => bonus
