@@ -982,7 +982,7 @@ TODO: Fix this entire tab it's utter shit
   const perksDesc = DOMCacheGetOrSet('singularityPerksDesc')
   for (const perk of singularityPerks) {
     const perkHTML = document.createElement('span')
-    perkHTML.innerHTML = `<img src="Pictures/${IconSets[player.iconSet][0]}/perk${perk.ID}.png">${perk.name()}`
+    perkHTML.innerHTML = `<img src="Pictures/${IconSets[player.iconSet][0]}/perk${perk.ID}.png" alt="${perk.ID}">${perk.name()}`
     perkHTML.id = perk.ID
     perkHTML.classList.add('oldPerk')
     perkHTML.style.display = 'none' // Ensure the perk is hidden if not unlocked as an anti-spoiler failsafe.

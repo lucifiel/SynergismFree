@@ -870,7 +870,9 @@ export const player: Player = {
     5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   },
   corruptionLoadoutNames: [
     'Loadout 1',
@@ -880,7 +882,9 @@ export const player: Player = {
     'Loadout 5',
     'Loadout 6',
     'Loadout 7',
-    'Loadout 8'
+    'Loadout 8',
+    'Loadout 9',
+    'Loadout 10'
   ],
   corruptionShowStats: true,
 
